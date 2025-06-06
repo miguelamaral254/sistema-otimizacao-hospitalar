@@ -1,0 +1,16 @@
+# Ignorar ambientes virtuais
+venv311/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos de sistema (ex: MacOS)
+.DS_Store
+
+# Ignorar arquivos específicos de IDEs
+.vscode/
+.idea/
+
+# Ignorar arquivos gerados
+*.csv
+*.parquet
