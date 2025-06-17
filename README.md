@@ -1,1 +1,0 @@
-# sistema-otimizacao-hospitalar
