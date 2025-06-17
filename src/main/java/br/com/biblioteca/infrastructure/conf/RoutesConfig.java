@@ -9,6 +9,7 @@ public class RoutesConfig {
             "swagger-ui/index.html",
             "/auth/**",
             "/users/**",
+            "/leitos-sus-nao-sus/**"
     };
     public static final String[] USER_ROUTES = {
             "/influenza-nordeste/**"
