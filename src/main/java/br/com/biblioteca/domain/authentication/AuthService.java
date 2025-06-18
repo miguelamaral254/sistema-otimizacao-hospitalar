@@ -34,6 +34,6 @@ public class AuthService {
     }
 
     public String generateToken(User user) {
-        return jwtConfig.generateToken(user.getEmail(), user.getRole().name());
+        return jwtConfig.generateToken(user.getEmail(), user.getRole().name(),user.getId());
     }
 }

@@ -16,10 +16,11 @@ public class JwtConfig {
 
     private static final long EXPIRATION_TIME = 86400000;
 
-    public String generateToken(String email, String role) {
+    public String generateToken(String email, String role, Long id) {
         try {
             return Jwts.builder()
                     .setSubject(email)
+                    .claim("id", id)
                     .claim("role", "ROLE_" + role)
                     .setIssuedAt(new Date())
                     .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
@@ -29,6 +30,7 @@ public class JwtConfig {
             throw new ServerException("Internal Server Error");
         }
     }
+
 
     public boolean validateToken(String token) {
         try {

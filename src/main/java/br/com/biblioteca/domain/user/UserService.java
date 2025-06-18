@@ -40,7 +40,6 @@ public class UserService {
         return userRepository.findAll(specification, pageable);
     }
 
-    @Cacheable(value = "users", key = "#id")
     @Transactional(readOnly = true)
     public User findById(Long id) {
         return userRepository.findById(id)

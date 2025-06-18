@@ -50,7 +50,7 @@ class AuthServiceTest {
         when(passwordEncoder.matches(password, encodedPassword)).thenReturn(true);
 
         String generatedToken = "generatedToken123";
-        when(jwtConfig.generateToken(user.getEmail(), user.getRole().name())).thenReturn(generatedToken);
+        when(jwtConfig.generateToken(user.getEmail(), user.getRole().name(), user.getId())).thenReturn(generatedToken);
 
         User authenticatedUser = authService.authenticateUser(email, password);
         String token = authService.generateToken(authenticatedUser);
