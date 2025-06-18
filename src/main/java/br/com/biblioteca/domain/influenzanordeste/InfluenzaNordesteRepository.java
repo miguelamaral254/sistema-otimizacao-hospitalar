@@ -8,6 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface InfluenzaNordesteRepository extends JpaRepository<InfluenzaNordeste, Long>, JpaSpecificationExecutor<InfluenzaNordeste> {
 
-    @Query("SELECT i FROM InfluenzaNordeste i ORDER BY i.id")
-    Page<InfluenzaNordeste> findWithPagination(Pageable pageable);
+
 }
