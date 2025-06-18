@@ -10,7 +10,8 @@ venv311/
 # Ignorar arquivos específicos de IDEs
 .vscode/
 .idea/
-
+.target/
+/target/
 # Ignorar arquivos gerados
 *.csv
 *.parquet
