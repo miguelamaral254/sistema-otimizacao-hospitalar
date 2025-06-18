@@ -1,7 +1,6 @@
 package br.com.biblioteca.domain.authentication;
 
 import br.com.biblioteca.domain.user.User;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,11 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
     private final AuthMapper authMapper;
+
+    public AuthController(AuthService authService, AuthMapper authMapper) {
+        this.authService = authService;
+        this.authMapper = authMapper;
+    }
 
     @PostMapping()
     public ResponseEntity<AuthResponseDTO> login(@RequestBody AuthRequestDTO authRequestDTO) {

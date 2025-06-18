@@ -6,7 +6,6 @@ import br.com.biblioteca.domain.exceptions.NotFoundException;
 import br.com.biblioteca.domain.exceptions.ServerException;
 import br.com.biblioteca.domain.image.ImageStorageService;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,11 +19,16 @@ import java.util.Arrays;
 import java.util.function.Consumer;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ImageStorageService imageStorageService;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ImageStorageService imageStorageService) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.imageStorageService = imageStorageService;
+    }
 
     @Transactional
     public User createUser(User user, MultipartFile file, HttpServletRequest request) {

@@ -1,10 +1,8 @@
 package br.com.biblioteca.domain.influenzanordeste;
 
-
 import br.com.biblioteca.core.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,20 +13,21 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Influenza Nordeste")
 @RestController
 @RequestMapping("/influenza-nordeste")
-@RequiredArgsConstructor
 public class InfluenzaNordesteController {
 
     private final InfluenzaNordesteService influenzaNordesteService;
     private final InfluenzaNordesteMapper influenzaNordesteMapper;
 
+    public InfluenzaNordesteController(InfluenzaNordesteService influenzaNordesteService, InfluenzaNordesteMapper influenzaNordesteMapper) {
+        this.influenzaNordesteService = influenzaNordesteService;
+        this.influenzaNordesteMapper = influenzaNordesteMapper;
+    }
 
     @GetMapping("/{id}")
     @Operation(summary = "Search Influenza data by ID")
-    public ResponseEntity<ApplicationResponse<InfluenzaNordesteDTO>> findById(
-            @PathVariable Long id) {
+    public ResponseEntity<ApplicationResponse<InfluenzaNordesteDTO>> findById(@PathVariable Long id) {
         InfluenzaNordeste influenzaNordeste = influenzaNordesteService.findInfluenzaById(id);
         InfluenzaNordesteDTO influenzaNordesteDTO = influenzaNordesteMapper.toDto(influenzaNordeste);
-
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(ApplicationResponse.ofSuccess(influenzaNordesteDTO));

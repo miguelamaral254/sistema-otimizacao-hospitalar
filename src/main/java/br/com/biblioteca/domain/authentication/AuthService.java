@@ -4,18 +4,22 @@ import br.com.biblioteca.domain.exceptions.UnauthorizedException;
 import br.com.biblioteca.domain.user.User;
 import br.com.biblioteca.domain.user.UserRepository;
 import br.com.biblioteca.infrastructure.security.JwtConfig;
-import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@AllArgsConstructor
 @Service
 public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final JwtConfig jwtConfig;
+
+    public AuthService(PasswordEncoder passwordEncoder, UserRepository userRepository, JwtConfig jwtConfig) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.jwtConfig = jwtConfig;
+    }
 
     @Transactional
     public User authenticateUser(String email, String password) {
@@ -34,6 +38,6 @@ public class AuthService {
     }
 
     public String generateToken(User user) {
-        return jwtConfig.generateToken(user.getEmail(), user.getRole().name(),user.getId());
+        return jwtConfig.generateToken(user.getEmail(), user.getRole().name(), user.getId());
     }
 }

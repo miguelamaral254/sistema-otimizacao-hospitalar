@@ -1,0 +1,6 @@
+br/com/biblioteca/domain/user/UserMapperTest.class
+br/com/biblioteca/domain/user/factories/UserDTOFactory.class
+br/com/biblioteca/domain/user/UserServiceTest.class
+br/com/biblioteca/InfluenzaApplicationTests.class
+br/com/biblioteca/domain/auth/AuthServiceTest.class
+br/com/biblioteca/domain/user/factories/UserFactory.class

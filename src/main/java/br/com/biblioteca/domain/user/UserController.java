@@ -5,7 +5,6 @@ import br.com.biblioteca.validations.groups.UpdateValidation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -21,11 +20,15 @@ import java.net.URI;
 @Tag(name = "User")
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
     private final UserMapper userMapper;
 
+    public UserController(UserService userService, UserMapper userMapper) {
+        this.userService = userService;
+        this.userMapper = userMapper;
+    }
 
     @Tag(name = "Create User")
     @Operation(summary = "Create a new user")
@@ -109,7 +112,6 @@ public class UserController {
                 .status(HttpStatus.OK)
                 .body(ApplicationResponse.ofSuccess(userDTO));
     }
-
 
     @PutMapping("/{id}")
     @Operation(summary = "Update an existing user")
